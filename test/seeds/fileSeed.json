@@ -1,4 +1,5 @@
 {
+  "dataFormat": "EXTENDED_JSON",
   "Food": [
     {
       "_id": {
