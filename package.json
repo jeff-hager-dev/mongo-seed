@@ -1,6 +1,6 @@
 {
   "name": "mongo-seed",
-  "version": "0.0.0",
+  "version": "0.3.0",
   "description": "A little node module that will allow a user to clear a mongo database and then populate it from a given json file. ",
   "main": "lib/mongo-seed.js",
   "directories": {},
