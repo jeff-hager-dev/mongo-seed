@@ -4,10 +4,10 @@
   "description": "A little node module that will allow a user to clear a mongo database and then populate it from a given json file. ",
   "main": "lib/mongo-seed.js",
   "directories": {
-    "test": "test"
+
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test":  "node node_modules/mocha/bin/mocha test"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "mongodb": "^2.0.52"
   },
   "devDependencies": {
+    "chai": "^3.4.1",
     "mocha": "^2.3.4"
   }
 }
