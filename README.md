@@ -22,7 +22,7 @@ mongoSeed.load("localhost",27017, "<name_of_database>", "<seed_directory>", "dir
 
 A file is similar to the directory seed. You have a file with an object in it where each property is a collection name and the value is an array of documents for that collection.
 
-```json
+```text
 {
     "table_Name": [/*Each document as an individual object in the array*/]
     /*...*/
