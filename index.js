@@ -3,7 +3,7 @@
 var fs = require('fs'),
   path = require('path'),
   mongodb = require("mongodb"),
-  ObjectID = require('mongodb').ObjectID,
+  Db = require('mongodb').Db,
   json2Mongo = require('json2Mongo'),
   MongoClient = mongodb.MongoClient,
   async = require('async'),
@@ -28,11 +28,11 @@ var loadActions = {
 
         MongoClient.connect('mongodb://' + host + ':' + port + '/' + db, function (err, db) {
           db.createCollection(collectionName, function (err, col) {
-            db.collection(collectionName, function(err, collection){
+            db.collection(collectionName, function (err, collection) {
 
               content = json2Mongo(content);
 
-              collection.insertMany(content,{w:1}, function (err) {
+              collection.insertMany(content, {w: 1}, function (err) {
                 done(err);
               });
             });
@@ -57,10 +57,14 @@ module.exports = {
     if (!action) {
       return callback(new Error("Invalid load type"));
     }
-
     action(host, port, db, seedLocation, callback);
-
   },
   "clear": function (host, port, db, callback) {
+    var db = new Db(db, new Server(host, port));
+    db.open(function (err, db) {
+      db.dropDatabase(function (err, result) {
+        callback(err, results);
+      });
+    });
   }
 };
