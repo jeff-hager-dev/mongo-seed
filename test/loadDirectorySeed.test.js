@@ -3,7 +3,7 @@ var mongoSeed = require('../index.js'),
   Server = require('mongodb').Server,
   expect = require('chai').expect;
 
-describe("Should Seed a mongo Database based off a directory of JSON Files", function () {
+describe("Seed a mongo Database based off a directory of JSON Files", function () {
   var host = "localhost";
   var port = 27017;
   var dbName = "PetStore";

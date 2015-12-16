@@ -3,7 +3,8 @@
 var fs = require('fs'),
   path = require('path'),
   mongodb = require("mongodb"),
-  Db = require('mongodb').Db,
+  Server = mongodb.Server,
+  Db = mongodb.Db,
   json2Mongo = require('json2Mongo'),
   MongoClient = mongodb.MongoClient,
   async = require('async'),
@@ -62,8 +63,8 @@ module.exports = {
   "clear": function (host, port, db, callback) {
     var db = new Db(db, new Server(host, port));
     db.open(function (err, db) {
-      db.dropDatabase(function (err, result) {
-        callback(err, results);
+      db.dropDatabase(function (err) {
+        callback(err);
       });
     });
   }
