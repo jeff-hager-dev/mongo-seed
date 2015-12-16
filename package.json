@@ -1,0 +1,34 @@
+{
+  "name": "mongo-seed",
+  "version": "0.0.0",
+  "description": "A little node module that will allow a user to clear a mongo database and then populate it from a given json file. ",
+  "main": "lib/mongo-seed.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeff-hager-dev/mongo-seed.git"
+  },
+  "keywords": [
+    "mongodb",
+    "node",
+    "seed",
+    "testing"
+  ],
+  "author": "J. Nolan Hager",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeff-hager-dev/mongo-seed/issues"
+  },
+  "homepage": "https://github.com/jeff-hager-dev/mongo-seed#readme",
+  "dependencies": {
+    "mongodb": "^2.0.52"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.4"
+  }
+}
