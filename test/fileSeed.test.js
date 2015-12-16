@@ -1,4 +1,5 @@
-/*
+"use strict";
+
 var mongoSeed = require('../index.js'),
   Db = require('mongodb').Db,
   Server = require('mongodb').Server,
@@ -27,9 +28,16 @@ describe("Seed a Mongo Database based off a a single JSON Files", function () {
   });
 
   it("Should return an error if the file doesn't exist", function (done) {
-    mongoSeed.load(host, port, dbName, "turtles", "file", function (err) {
+    mongoSeed.load(host, port, dbName, __dirname + "/seeds/fileSeed_foo.json", "file", function (err) {
       expect(err).not.to.equal(null);
       expect(err.code).to.equal("ENOENT");
+      done();
+    });
+  });
+
+  it("Should return an error if the file is invalid type", function (done) {
+    mongoSeed.load(host, port, dbName, __dirname + "/seeds/fileSeed.jys", "file", function (err) {
+      expect(err).not.to.equal(null);
       done();
     });
   });
@@ -41,4 +49,4 @@ describe("Seed a Mongo Database based off a a single JSON Files", function () {
     });
   });
 
-});*/
+});
