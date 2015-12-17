@@ -1,30 +1,30 @@
-# mongo-seed
-A build with testing MEAN applications in mind. Allow a developer to write the test data for and populate the database then tear it down.
+# mongo-seed (BETA)
+Built with testing MEAN applications in mind. Gives a developer a way to populate mongo database from different data sources; functions, files, directories of JSON files.
 
 Also open to anyone who wants to build this out with more cool things.
 
 ## Reason for Existence
 
-I built this to help with testing MEAN stack applications. So, you may be asking "Why did you do this?" or "Why not use RAKE?" 
-or "Why not use another packages that do something similar?". My answer is part "I couldn't find exactly what I needed" and 
-part "It sounded fun to write my own package to do this". 
+So, you may be asking "Why did you do this?" or "Why not use RAKE?" 
+or "Why not use another packages that does something similar?". My answer is part "I couldn't find exactly what I wanted" and 
+part "It sounded fun to write and I some free time". 
 
-To explain the first part more I will break down in to my use cases. 
+To explain the first part more I will break it down in to my use cases. 
 
-1. Specific Test Data sets
-   - Different types of data sources for versioned data on specific tests. See seed types of what I wanted.
+1. Specific Test Data
+   - Different types of data sources of versioned data for specific tests. See seed types of what I had in mind.
 2. Precise control on data for specific states
-   - See point 1 then add the ability to write functions to set up data.
-3. Able to export just collections from mongodb 
-    - I liked using mongoexport to get certain collections of data of only want I need.
+   - See point 1 then add the ability to write functions to set up data or mix match sources.
+3. Ability to import just collections from mongodb export functionality 
+    - I liked using mongoexport to get certain collections of data that I know capture the scenarios I am trying to test.
 4. Load multiple Databases
-    - This is the one that really sold me. I wanted to be able to stand up two isolated databases with specific data sets
+    - This is the one that really wanted. Ability to stand up two isolated databases with specific data sets and change one or both.
 5. Readable seeds
     - Since the seeds can be super lean and in readable JSON it should be easy to manipulate them to fit test cases.
 6. I like even number lists or lists that end at 3.
     - Don't Judge me
 
-To explain the second part more...it sounded fun and it was.
+To explain the second part more...it sounded fun as I mentioned before and it was.
 
 ALSO Note that the first two versions(0.3.0 & 0.4.0) were written really fast in half a day.
 
@@ -46,7 +46,7 @@ mongoSeed.load("localhost",27017, "<name_of_database>", "<seed_directory>", "dir
 
 ### File
 
-A file is similar to the directory seed. You have a file with an object in it where each property is a collection name and the value is an array of documents for that collection.
+AThis is similar to the directory seed. You have a file with an object in it where each property is a collection name and the value is an array of documents for that collection.
 This also supports two different data formats. The MongoDB Extended JSON(EXTENDED) or the JSON recognized by the node mongodb driver(DRIVER). 
 
 ```text
@@ -66,7 +66,8 @@ mongoSeed.load("localhost",27017, "<name_of_database>", "<path_to_file>", "file"
 
 ### Load from Function
 
-So loading from a function means you have a node module somewhere that returns JSON in the same format the mongodb node drive uses. I wanted to use some of the mongoDB client helpers to set up data sets.
+So loading from a function means you have a node module somewhere that returns JSON in the same format the node mongodb driver 
+accepts. This came about because I wanted to use some of the mongoDB client helpers to set up data sets.
 
 ```javascript
 module.exports = function(){
@@ -95,6 +96,8 @@ Self-explanatory. Back up a database that causes certain test cases load it in t
 ### REST ENDPOINT
 
 COMING SOON
+
+Ability to load JSON from a REST endpoint or maybe a JSON file stored on an S3 Bucket.
 
 
 ### Examples
