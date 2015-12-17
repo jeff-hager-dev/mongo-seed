@@ -24,6 +24,8 @@ To explain the first part more I will break down in to my use cases.
 
 To explain the second part more...it sounded fun and it was.
 
+ALSO Note that the first two versions(0.3.0 & 0.4.0) were written really fast in half a day.
+
 TL;DR: I wanted it my way and I wanted to do it. I wonder if these are supposed to go at the top...
 
 ## Types of Seeds
