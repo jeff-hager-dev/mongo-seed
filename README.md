@@ -1,7 +1,7 @@
 # mongo-seed
-A little node module that will allow a user to clear a mongo database and then populate it from a given json file.
+A build with testing MEAN applications in mind. Allow a developer to write the test data for and populate the database then tear it down.
 
-## Purpose
+## Reason for Existence
 
 I built this to help with testing MEAN stack applications. So, you may be asking "Why did you do this?" or "Why not use RAKE?" 
 or "Why not use another packages that do something similar?". My answer is part "I couldn't find exactly what I needed" and 
@@ -9,8 +9,8 @@ part "It sounded fun to write my own package to do this".
 
 To explain the first part more I will break down in to my use cases. 
 
-1. Version Data
-   - I want to different types of data source to version data. See seed types of what I wanted.
+1. Specific Test Data sets
+   - I want to different types of data source to version data for specific tests. See seed types of what I wanted.
 2. Precise control on data for specific states
    - See point 1 then add the ability to write functions to set up data.
 3. Able to export just collections from mongodb 
@@ -24,8 +24,7 @@ To explain the first part more I will break down in to my use cases.
 
 To explain the second part more...it sounded fun and it was.
 
-
-TL;DR: I wanted it my way and I wanted to do it.
+TL;DR: I wanted it my way and I wanted to do it. I wonder if these are supposed to go at the top...
 
 ## Types of Seeds
 
@@ -34,7 +33,6 @@ TL;DR: I wanted it my way and I wanted to do it.
 This is where you have a directory filled with JSON files that were created from a ```mongoexport```.
 
 _NOTE_: make sure to use --jsonArray when exporting data from tables. Similar ```mongoexport --db PetShop --collection Food --out Food.json --jsonArray```
-
 
 ```javascript
 mongoSeed.load("localhost",27017, "<name_of_database>", "<seed_directory>", "dir", function (err) {
@@ -87,12 +85,12 @@ mongoSeed.load("localhost",27017, "<name_of_database>", "<path_function_def>", "
 
 COMING SOON
 
-Self-explanatory. Back up a database that causes certain test cases load it in the test enviroment then tear it down.
+Self-explanatory. Back up a database that causes certain test cases load it in the test enviroment then tear it down. Well when this is added....
 
 
 ### REST ENDPOINT
 
-COMING SOON2
+COMING SOON
 
 
 ### Examples
