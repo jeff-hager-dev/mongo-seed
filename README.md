@@ -10,7 +10,7 @@ part "It sounded fun to write my own package to do this".
 To explain the first part more I will break down in to my use cases. 
 
 1. Specific Test Data sets
-   - I want to different types of data source to version data for specific tests. See seed types of what I wanted.
+   - Different types of data sources for versioned data on specific tests. See seed types of what I wanted.
 2. Precise control on data for specific states
    - See point 1 then add the ability to write functions to set up data.
 3. Able to export just collections from mongodb 
