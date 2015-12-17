@@ -64,12 +64,30 @@ mongoSeed.load("localhost",27017, "<name_of_database>", "<path_to_file>", "file"
 
 ### Load from Function
 
-So loading from a function means you have a node module somewhere that returns JSON in the same format the mongodb node
+So loading from a function means you have a node module somewhere that returns JSON in the same format the mongodb node drive uses. I wanted to use some of the mongoDB client helpers to set up data sets.
+
+```javascript
+module.exports = function(){
+    return {
+       "table_Name": [/*Each document as an individual object in the array*/]
+       /*...*/
+       "table_Name_n": [/*Each document as an individual object in the array*/]
+    };
+};
+```
+
+```javascript
+mongoSeed.load("localhost",27017, "<name_of_database>", "<path_function_def>", "function", function (err) {
+  //..do what ever you need
+});
+```
 
 
 ### Mong Dump file
 
 COMING SOON
+
+Self-explanatory. Back up a database that causes certain test cases load it in the test enviroment then tear it down.
 
 
 ### REST ENDPOINT
