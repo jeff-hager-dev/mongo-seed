@@ -1,6 +1,8 @@
 # mongo-seed
 A build with testing MEAN applications in mind. Allow a developer to write the test data for and populate the database then tear it down.
 
+Also open to anyone who wants to build this out with more cool things.
+
 ## Reason for Existence
 
 I built this to help with testing MEAN stack applications. So, you may be asking "Why did you do this?" or "Why not use RAKE?" 
