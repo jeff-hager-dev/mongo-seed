@@ -5,14 +5,13 @@ var fs = require('fs'),
   Server = mongodb.Server,
   Db = mongodb.Db,
   dirSeed = require('./lib/directorySeed'),
+  functionSeed = require('./lib/functionSeed'),
   fileSeed = require('./lib/fileSeed');
 
 var loadActions = {
   "dir": dirSeed,
   "file": fileSeed,
-  "function": function () {
-    throw new Error("Not Implemented");
-  },
+  "function": functionSeed,
   "mongoDump": function () {
     throw new Error("Not Implemented");
   }

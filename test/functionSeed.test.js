@@ -20,14 +20,14 @@ describe("Seed a Mongo Database based off a function", function () {
   });
 
   it("Should return an error if the file with the function doesn't exist", function (done) {
-    mongoSeed.load(host, port, dbName, __dirname + "/seeds/functionSeed_foo.json", "file", function (err) {
+    mongoSeed.load(host, port, dbName, __dirname + "/seeds/functionSeed_foo.json", "function", function (err) {
       expect(err).not.to.equal(null);
       done();
     });
   });
 
   it("Should populate a database given a directory full of JSON exports of collections", function (done) {
-    mongoSeed.load(host, port, dbName, __dirname + "/seeds/functionSeed.json", "file", function (err) {
+    mongoSeed.load(host, port, dbName, __dirname + "/seeds/functionSeed.js", "function", function (err) {
       expect(err).to.equal(null);
       done();
     });
