@@ -1,6 +1,32 @@
 # mongo-seed
 A little node module that will allow a user to clear a mongo database and then populate it from a given json file.
 
+## Purpose
+
+I built this to help with testing MEAN stack applications. So, you may be asking "Why did you do this?" or "Why not use RAKE?" 
+or "Why not use another packages that do something similar?". My answer is part "I couldn't find exactly what I needed" and 
+part "It sounded fun to write my own package to do this". 
+
+To explain the first part more I will break down in to my use cases. 
+
+1. Version Data
+   - I want to different types of data source to version data. See seed types of what I wanted.
+2. Precise control on data for specific states
+   - See point 1 then add the ability to write functions to set up data.
+3. Able to export just collections from mongodb 
+    - I liked using mongoexport to get certain collections of data of only want I need.
+4. Load multiple Databases
+    - This is the one that really sold me. I wanted to be able to stand up two isolated databases with specific data sets
+5. Readable seeds
+    - Since the seeds can be super lean and in readable JSON it should be easy to manipulate them to fit test cases.
+6. I like even number lists or lists that end at 3.
+    - Don't Judge me
+
+To explain the second part more...it sounded fun and it was.
+
+
+TL;DR: I wanted it my way and I wanted to do it.
+
 ## Types of Seeds
 
 ### Directory Seed
@@ -38,12 +64,17 @@ mongoSeed.load("localhost",27017, "<name_of_database>", "<path_to_file>", "file"
 
 ### Load from Function
 
-COMING SOON
+So loading from a function means you have a node module somewhere that returns JSON in the same format the mongodb node
 
 
 ### Mong Dump file
 
 COMING SOON
+
+
+### REST ENDPOINT
+
+COMING SOON2
 
 
 ### Examples
