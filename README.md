@@ -1,34 +1,7 @@
 # mongo-seed (BETA)
-Built with testing MEAN applications in mind. Gives a developer a way to populate mongo database from different data sources; functions, files, directories of JSON files.
+Built with testing MEAN applications in mind. Gives a developer a way to populate mongo database from different data sources; functions, files, directories of JSON files. Also allows the developer to clean up the databases after the test.
 
 Also open to anyone who wants to build this out with more cool things.
-
-## Reason for Existence
-
-So, you may be asking "Why did you do this?" or "Why not use RAKE?" 
-or "Why not use another packages that does something similar?". My answer is part "I couldn't find exactly what I wanted" and 
-part "It sounded fun to write and I some free time". 
-
-To explain the first part more I will break it down in to my use cases. 
-
-1. Specific Test Data
-   - Different types of data sources of versioned data for specific tests. See seed types of what I had in mind.
-2. Precise control on data for specific states
-   - See point 1 then add the ability to write functions to set up data or mix match sources.
-3. Ability to import just collections from mongodb export functionality 
-    - I liked using mongoexport to get certain collections of data that I know capture the scenarios I am trying to test.
-4. Load multiple Databases
-    - This is the one that really wanted. Ability to stand up two isolated databases with specific data sets and change one or both.
-5. Readable seeds
-    - Since the seeds can be super lean and in readable JSON it should be easy to manipulate them to fit test cases.
-6. I like even number lists or lists that end at 3.
-    - Don't Judge me
-
-To explain the second part more...it sounded fun as I mentioned before and it was.
-
-ALSO Note that the first two versions(0.3.0 & 0.4.0) were written really fast in half a day.
-
-TL;DR: I wanted it my way and I wanted to do it. I wonder if these are supposed to go at the top...
 
 ## Types of Seeds
 
@@ -36,7 +9,7 @@ TL;DR: I wanted it my way and I wanted to do it. I wonder if these are supposed 
 
 This is where you have a directory filled with JSON files that were created from a ```mongoexport```.
 
-_NOTE_: make sure to use --jsonArray when exporting data from tables. Similar ```mongoexport --db PetShop --collection Food --out Food.json --jsonArray```
+__NOTE:__ make sure to use --jsonArray when exporting data from tables. Similar ```mongoexport --db PetShop --collection Food --out Food.json --jsonArray```
 
 ```javascript
 mongoSeed.load("localhost",27017, "<name_of_database>", "<seed_directory>", "dir", function (err) {
@@ -100,6 +73,137 @@ COMING SOON
 Ability to load JSON from a REST endpoint or maybe a JSON file stored on an S3 Bucket.
 
 
-### Examples
+## Examples
 
-COMING SOON
+### Single Database
+
+Lets say you have the following directory structure:
+
+```text
+├── seeds
+│   └── functionSeed.js
+└── test
+    └── generica.test.js
+```
+
+The file functionSeed.js might look like this:
+
+```javascript
+module.exports = function(){
+    return {
+       "table_Name": [
+         {
+           "_id": new ObjectId("asome side here"), "Name": "Person"
+         }
+       ]
+    };
+};
+```
+
+The in the test file, lets say you are using mocha for testing:
+
+
+```javascript
+var async = require('async'),
+  mongoSeed = require('mongo-seed');
+
+describe("testing some functionality", function(){
+
+  var mongo = {
+    "host": "",
+    "port": "",
+    "db": ""
+  };
+
+  before(function (done) {
+    async.waterfall([
+        function (callback) {
+          mongoSeed.clear(mongo.host, mongo.port, cmongo.db, function (err) {
+            callback(err);
+          });
+        },
+        function (callback) {
+          var seedPath = path.resolve(__dirname + "/../seeds/functionSeed.js");
+          mongoSeed.load(mongo.host, mongo.port, mongo.db, seedPath, "function", function (err) {
+            callback(err);
+          });
+        }
+      ],
+      function (err, results) {
+        if(err) throw err;
+        done();
+      });
+  });
+
+  it("Do some testing here", function(done){
+    // test here
+    done();
+  });
+
+});
+```
+
+
+### Multiple databases
+
+Lets say you need to seed multiple databases for testing here is a quick example of how you might do that.
+
+```javascript
+
+var async = require('async'),
+  mongoSeed = require('mongo-seed');
+
+describe("testing some functionality", function(){
+
+  var mongo = {
+    "host": "",
+    "port": "",
+    "db": ""
+  };
+
+  var mongo2 = {
+    "host": "",
+    "port": "",
+    "db": ""
+  };
+
+  before(function (done) {
+    async.waterfall([
+        function (callback) {
+          mongoSeed.clear(mongo.host, mongo.port, mongo.db, function (err) {
+            callback(err);
+          });
+        },
+        function (callback) {
+          mongoSeed.clear(mongo2.host, mongo2.port, mongo2.db, function (err) {
+            callback(err);
+          });
+        },
+        
+        function (callback) {
+          var seedPath = path.resolve(__dirname + "/../seeds/functionSeed.js");
+          mongoSeed.load(mongo.host, mongo.port, mongo.db, seedPath, "function", function (err) {
+            callback(err);
+          });
+        },
+        function (callback) {
+          var seedPath = path.resolve(__dirname + "/../seeds/functionSeed2.js");
+          mongoSeed.load(mongo2.host, mongo2.port, mongo2.db, seedPath, "function", function (err) {
+            callback(err);
+          });
+        }
+      ],
+      function (err, results) {
+        if(err) throw err;
+        done();
+      });
+  });
+
+  it("Do some testing here", function(done){
+    // test here
+    done();
+  });
+
+});
+
+```
