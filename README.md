@@ -1,5 +1,5 @@
-# mongo-seed (BETA)
-Built with testing MEAN applications in mind. Gives a developer a way to populate mongo database from different data sources; functions, files, directories of JSON files. Also allows the developer to clean up the databases after the test.
+# mongo-seed 
+Built with testing MEAN applications in mind. Gives a developer a way to populate mongo databases from different data sources; functions, files, directories of JSON files. Also allows the developer to clean up the databases after the test.
 
 Also open to anyone who wants to build this out with more cool things.
 
@@ -19,7 +19,7 @@ mongoSeed.load("localhost",27017, "<name_of_database>", "<seed_directory>", "dir
 
 ### File
 
-AThis is similar to the directory seed. You have a file with an object in it where each property is a collection name and the value is an array of documents for that collection.
+This is similar to the directory seed. You have a file with an object in it where each property is a collection name and the value is an array of documents for that collection.
 This also supports two different data formats. The MongoDB Extended JSON(EXTENDED) or the JSON recognized by the node mongodb driver(DRIVER). 
 
 ```text
@@ -63,7 +63,7 @@ mongoSeed.load("localhost",27017, "<name_of_database>", "<path_function_def>", "
 
 COMING SOON
 
-Self-explanatory. Back up a database that causes certain test cases load it in the test enviroment then tear it down. Well when this is added....
+Self-explanatory. Back up a database that causes certain test cases load it in the test environment then tear it down. Well when this is added....
 
 
 ### REST ENDPOINT
@@ -93,7 +93,7 @@ module.exports = function(){
     return {
        "table_Name": [
          {
-           "_id": new ObjectId("asome side here"), "Name": "Person"
+           "_id": new ObjectId(“some id here”), "Name": "Person"
          }
        ]
     };
@@ -118,7 +118,7 @@ describe("testing some functionality", function(){
   before(function (done) {
     async.waterfall([
         function (callback) {
-          mongoSeed.clear(mongo.host, mongo.port, cmongo.db, function (err) {
+          mongoSeed.clear(mongo.host, mongo.port, mongo.db, function (err) {
             callback(err);
           });
         },
