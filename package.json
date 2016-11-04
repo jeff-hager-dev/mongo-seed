@@ -1,6 +1,6 @@
 {
   "name": "mongo-seed",
-  "version": "0.4.4",
+  "version": "0.6.0",
   "description": "Built with testing MEAN applications in mind. Gives a developer a way to populate mongo database from different data sources; functions, files, directories of JSON files.",
   "main": "lib/mongo-seed.js",
   "directories": {},
